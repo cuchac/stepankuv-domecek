@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckgv4m67a5kfj"]
+
+[ext_resource type="PackedScene" uid="uid://nb2wowyl2vi0" path="res://dialogue/interface/interface.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://kxg3b5g4gvjr" path="res://IMG_20241109_180619.jpg" id="13_imv5l"]
+[ext_resource type="Script" path="res://grid_movement/character.gd" id="14_7dsod"]
+[ext_resource type="Texture2D" uid="uid://ba5rklp7brg7" path="res://grid_movement/pawns/character.png" id="14_mi8fc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf28r"]
+
+[node name="Exploration" type="Node2D"]
+
+[node name="Home" type="Sprite2D" parent="."]
+scale = Vector2(0.510877, 0.510877)
+texture = ExtResource("13_imv5l")
+centered = false
+
+[node name="Player" type="CharacterBody2D" parent="Home"]
+position = Vector2(250.549, 203.571)
+scale = Vector2(1.95742, 1.95742)
+motion_mode = 1
+script = ExtResource("14_7dsod")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Player"]
+shape = SubResource("CircleShape2D_yf28r")
+
+[node name="Character" type="Sprite2D" parent="Home/Player"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_mi8fc")
+
+[node name="DialogueUI" parent="." instance=ExtResource("10")]
+visible = false
