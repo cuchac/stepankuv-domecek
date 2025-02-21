@@ -1,11 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckgv4m67a5kfj"]
 
+[ext_resource type="Texture2D" uid="uid://dei1qwasgew0v" path="res://grid_movement/pawns/IMG_20241111_202735.png" id="3_y7qqr"]
 [ext_resource type="PackedScene" uid="uid://nb2wowyl2vi0" path="res://dialogue/interface/interface.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://kxg3b5g4gvjr" path="res://IMG_20241109_180619.jpg" id="13_imv5l"]
 [ext_resource type="Script" path="res://grid_movement/character.gd" id="14_7dsod"]
-[ext_resource type="Texture2D" uid="uid://ba5rklp7brg7" path="res://grid_movement/pawns/character.png" id="14_mi8fc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yf28r"]
+radius = 5.0
 
 [node name="Exploration" type="Node2D"]
 
@@ -15,18 +16,53 @@ texture = ExtResource("13_imv5l")
 centered = false
 
 [node name="Player" type="CharacterBody2D" parent="Home"]
-position = Vector2(250.549, 203.571)
+position = Vector2(1190.11, 1362.36)
 scale = Vector2(1.95742, 1.95742)
 motion_mode = 1
 script = ExtResource("14_7dsod")
-metadata/_edit_group_ = true
+
+[node name="Img20241111202735" type="Sprite2D" parent="Home/Player"]
+position = Vector2(-7.62939e-06, -32)
+scale = Vector2(0.151943, 0.151943)
+texture = ExtResource("3_y7qqr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Player"]
+visible = false
 shape = SubResource("CircleShape2D_yf28r")
-
-[node name="Character" type="Sprite2D" parent="Home/Player"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("14_mi8fc")
 
 [node name="DialogueUI" parent="." instance=ExtResource("10")]
 visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(200, 400)
+scale = Vector2(1.40495, 1.33556)
+polygon = PackedVector2Array(-5.69415, 35.94, 39.8591, 41.93, 36.1856, 80.5735, 34.165, 101.83, 113.883, 101.83, 113.883, 155.74, -17.0825, 71.88)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(200, 400)
+scale = Vector2(1.40495, 1.33556)
+polygon = PackedVector2Array(-119.577, 71.88, -39.8591, 71.88, -34.165, 29.95, 39.8591, 17.97, 51.2475, 47.92, 51.2475, 83.86, 113.883, 89.85, 113.883, 65.89, 79.7183, 59.9, 102.495, -41.93, 233.461, -35.94, 250.543, -11.98, 290.402, -5.98999, 324.567, 0, 324.567, 53.91, 330.261, 53.91, 330.261, -5.98999, 290.402, -11.98, 290.402, -23.96, 284.708, -23.96, 284.708, -29.95, 279.014, -29.95, 279.014, -41.93, -113.883, -53.91)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(200, 400)
+scale = Vector2(1.40495, 1.33556)
+polygon = PackedVector2Array(113.883, 155.74, 113.883, 203.66, 216.378, 215.64, 222.072, 245.59, 244.849, 245.59, 250.543, 179.7, 216.378, 179.7, 216.378, 173.71, 119.577, 173.71)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(200, 400)
+scale = Vector2(1.40495, 1.33556)
+polygon = PackedVector2Array(130.966, 65.89, 130.966, 137.77, 210.684, 155.74, 210.684, 101.83, 301.791, 89.85, 313.179, 29.95, 239.155, 17.97, 239.155, 77.87)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(200, 400)
+scale = Vector2(1.40495, 1.33556)
+polygon = PackedVector2Array(353.038, 185.69, 347.344, 245.59, 552.334, 245.59, 552.334, -41.93, 375.815, -47.92, 375.815, -29.95, 370.121, -29.95, 370.121, -23.96, 358.732, -23.96, 358.732, -11.98, 347.344, -11.98, 347.344, 0, 347.344, 47.92, 364.426, 47.92, 455.533, 53.91, 455.533, 77.87, 341.65, 77.87, 347.344, 149.75, 353.038, 149.75, 347.344, 83.86, 455.533, 83.86, 449.839, 203.66, 353.038, 203.66)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(616, 336, 639.4, 336, 624, 280, 632, 144, 664, 32, 696, 32, 666.9, 336, 688, 336, 672, 376, 624, 368)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(40, 320, 680, 24, 976, 344, 1016, 336, 1000, 0, 24, 8, 0, 728, 696, 728, 24, 720)

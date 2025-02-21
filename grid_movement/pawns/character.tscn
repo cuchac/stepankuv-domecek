@@ -182,9 +182,9 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxglf"]
 _data = {
 &"RESET": SubResource("3"),
-&"walk": SubResource("2"),
+&"bump": SubResource("1"),
 &"idle": SubResource("4"),
-&"bump": SubResource("1")
+&"walk": SubResource("2")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="9"]

@@ -45,4 +45,4 @@ color = Color(0.0703125, 0.0703125, 0.0703125, 1)
 [node name="Exploration" parent="." instance=ExtResource("3")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(640, 360)
+anchor_mode = 0
