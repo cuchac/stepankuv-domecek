@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://tgcafyr7d0c8"]
+[gd_scene load_steps=34 format=3 uid="uid://tgcafyr7d0c8"]
 
 [ext_resource type="Texture2D" uid="uid://b7jpy4oqpwxe5" path="res://ptak/ptak.png" id="1_m2uwb"]
 [ext_resource type="Script" uid="uid://frhr527sigv7" path="res://ptak/script.gd" id="1_nq7ji"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxe470myqcagl" path="res://ptak/ruka.png" id="2_qd3c2"]
 [ext_resource type="Texture2D" uid="uid://bed8vhtj67jch" path="res://ptak/scale.png" id="3_mni3o"]
 [ext_resource type="Texture2D" uid="uid://c388ktxm5fl0i" path="res://ptak/pin.png" id="4_nq7ji"]
+[ext_resource type="Script" uid="uid://cpvkdl7kvvpkq" path="res://ptak/ruka.gd" id="5_0pdie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mni3o"]
 radius = 307.34
@@ -24,6 +25,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.565134, 0.565134)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_0pdie"]
 resource_name = "ruka_chytne"
@@ -39,6 +64,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.353553, 1.23115, 0.0563282),
 "update": 0,
 "values": [655.351, 113.0, 655.351]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.766667, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.565134, 0.565134), Vector2(0.565134, 0.565134), Vector2(0.565134, 0.394717), Vector2(0.565134, 0.565134)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody2D:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.766667, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_nq7ji"]
@@ -119,6 +168,9 @@ states/ruka/position = Vector2(356, 89)
 states/ruka_chytne/node = SubResource("AnimationNodeAnimation_tdffv")
 states/ruka_chytne/position = Vector2(599, 111)
 transitions = ["Start", "ruka", SubResource("AnimationNodeStateMachineTransition_lu5p1"), "ruka", "ruka_chytne", SubResource("AnimationNodeStateMachineTransition_853fc"), "ruka_chytne", "ruka", SubResource("AnimationNodeStateMachineTransition_e7iqc")]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nq7ji"]
+radius = 109.09
 
 [sub_resource type="Animation" id="Animation_tdffv"]
 length = 0.001
@@ -218,12 +270,17 @@ transitions = ["scale", "RESET", SubResource("AnimationNodeStateMachineTransitio
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0pdie"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0pdie"]
+font_size = 100
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_nq7ji")
 
 [node name="Ptak" type="StaticBody2D" parent="."]
 position = Vector2(781, 165)
 scale = Vector2(0.29625, 0.29625)
+collision_layer = 3
+collision_mask = 2
 script = ExtResource("1_qd3c2")
 
 [node name="Timer" type="Timer" parent="Ptak"]
@@ -251,6 +308,14 @@ deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_flxu0")
 anim_player = NodePath("../ruka_animation")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Ruka"]
+script = ExtResource("5_0pdie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruka/StaticBody2D"]
+position = Vector2(-4.60636, -55.4754)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_nq7ji")
+
 [node name="Scale" type="Sprite2D" parent="."]
 position = Vector2(2, 721)
 texture = ExtResource("3_mni3o")
@@ -277,6 +342,8 @@ centered = false
 offset = Vector2(0, -33)
 
 [node name="hranice" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hranice"]
 position = Vector2(1282, 229)
@@ -296,5 +363,16 @@ shape = SubResource("WorldBoundaryShape2D_0pdie")
 position = Vector2(689, -3)
 rotation = -3.14159
 shape = SubResource("WorldBoundaryShape2D_0pdie")
+
+[node name="Hotovo" type="Label" parent="."]
+visible = false
+offset_left = 47.0
+offset_top = 42.0
+offset_right = 1213.0
+offset_bottom = 651.0
+text = "A máš ho!"
+label_settings = SubResource("LabelSettings_0pdie")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="Ptak/Timer" to="Ptak" method="_on_timer_timeout"]
