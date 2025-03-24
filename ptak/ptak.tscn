@@ -1,0 +1,300 @@
+[gd_scene load_steps=31 format=3 uid="uid://tgcafyr7d0c8"]
+
+[ext_resource type="Texture2D" uid="uid://b7jpy4oqpwxe5" path="res://ptak/ptak.png" id="1_m2uwb"]
+[ext_resource type="Script" uid="uid://frhr527sigv7" path="res://ptak/script.gd" id="1_nq7ji"]
+[ext_resource type="Script" uid="uid://bfmppujmn5tl1" path="res://ptak/ptak.gd" id="1_qd3c2"]
+[ext_resource type="Texture2D" uid="uid://cxe470myqcagl" path="res://ptak/ruka.png" id="2_qd3c2"]
+[ext_resource type="Texture2D" uid="uid://bed8vhtj67jch" path="res://ptak/scale.png" id="3_mni3o"]
+[ext_resource type="Texture2D" uid="uid://c388ktxm5fl0i" path="res://ptak/pin.png" id="4_nq7ji"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mni3o"]
+radius = 307.34
+
+[sub_resource type="Animation" id="Animation_bumxg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0pdie"]
+resource_name = "ruka_chytne"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.353553, 1.23115, 0.0563282),
+"update": 0,
+"values": [655.351, 113.0, 655.351]
+}
+
+[sub_resource type="Animation" id="Animation_nq7ji"]
+resource_name = "ruka"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(644, -0.25, 0, 0.25, 0, 748.5, -0.433333, -1, 0.6, -1, 644, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.46667, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(677.5, -0.25, 0, 0.1, -23, 639.5, -0.25, 0, 0.25, 0, 713.5, -0.25, 0, 0.25, 0, 636.5, -0.25, 0, 0.25, 0, 710.5, -0.25, 0, 0.25, 0, 677.515, -0.133333, 26.985, 0.25, 0),
+"times": PackedFloat32Array(0, 0.366667, 0.933333, 1.76667, 2.53333, 3)
+}
+
+[sub_resource type="Animation" id="Animation_gdohd"]
+resource_name = "scale"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -329), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gdohd"]
+_data = {
+&"RESET": SubResource("Animation_bumxg"),
+&"ruka": SubResource("Animation_nq7ji"),
+&"ruka_chytne": SubResource("Animation_0pdie"),
+&"scale": SubResource("Animation_gdohd")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bumxg"]
+animation = &"ruka"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tdffv"]
+animation = &"ruka_chytne"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lu5p1"]
+reset = false
+switch_mode = 1
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_853fc"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7iqc"]
+xfade_time = 0.1
+reset = false
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_flxu0"]
+states/ruka/node = SubResource("AnimationNodeAnimation_bumxg")
+states/ruka/position = Vector2(356, 89)
+states/ruka_chytne/node = SubResource("AnimationNodeAnimation_tdffv")
+states/ruka_chytne/position = Vector2(599, 111)
+transitions = ["Start", "ruka", SubResource("AnimationNodeStateMachineTransition_lu5p1"), "ruka", "ruka_chytne", SubResource("AnimationNodeStateMachineTransition_853fc"), "ruka_chytne", "ruka", SubResource("AnimationNodeStateMachineTransition_e7iqc")]
+
+[sub_resource type="Animation" id="Animation_tdffv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lu5p1"]
+_data = {
+&"RESET": SubResource("Animation_tdffv")
+}
+
+[sub_resource type="Animation" id="Animation_853fc"]
+resource_name = "ruka"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(647.5, -0.25, 0, 0.25, 0, 748.5, -0.433333, -1, 0.6, -1, 644.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(-0.0333333, 1.46667, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(677.5, -0.25, 0, 0.1, -23, 639.5, -0.25, 0, 0.25, 0, 713.5, -0.25, 0, 0.25, 0, 636.5, -0.25, 0, 0.25, 0, 710.5, -0.25, 0, 0.25, 0, 669.5, -0.0666666, 22, 0.25, 0),
+"times": PackedFloat32Array(-0.0333333, 0.366667, 0.933333, 1.76667, 2.53333, 3.03333)
+}
+
+[sub_resource type="Animation" id="Animation_e7iqc"]
+resource_name = "ruka_chytne"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(2.37841, 0.450626, 0.0563282),
+"update": 0,
+"values": [655.351, 113.0, 655.351]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flxu0"]
+_data = {
+&"ruka": SubResource("Animation_853fc"),
+&"ruka_chytne": SubResource("Animation_e7iqc")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nq7ji"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0pdie"]
+animation = &"Scale/scale"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bumxg"]
+xfade_time = 0.5
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tdffv"]
+xfade_time = 0.5
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdohd"]
+reset = false
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lu5p1"]
+states/End/position = Vector2(899, 100)
+states/RESET/node = SubResource("AnimationNodeAnimation_nq7ji")
+states/RESET/position = Vector2(378, 94)
+states/Start/position = Vector2(131, 100)
+states/scale/node = SubResource("AnimationNodeAnimation_0pdie")
+states/scale/position = Vector2(649, 94)
+transitions = ["scale", "RESET", SubResource("AnimationNodeStateMachineTransition_bumxg"), "RESET", "scale", SubResource("AnimationNodeStateMachineTransition_tdffv"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_gdohd")]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0pdie"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nq7ji")
+
+[node name="Ptak" type="StaticBody2D" parent="."]
+position = Vector2(781, 165)
+scale = Vector2(0.29625, 0.29625)
+script = ExtResource("1_qd3c2")
+
+[node name="Timer" type="Timer" parent="Ptak"]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ptak"]
+shape = SubResource("CircleShape2D_mni3o")
+
+[node name="Ptak2" type="Sprite2D" parent="Ptak"]
+position = Vector2(13.5022, 16.8774)
+scale = Vector2(0.835443, 0.835443)
+texture = ExtResource("1_m2uwb")
+
+[node name="Ruka" type="Sprite2D" parent="."]
+scale = Vector2(0.565134, 0.565134)
+texture = ExtResource("2_qd3c2")
+
+[node name="ruka_animation" type="AnimationPlayer" parent="Ruka"]
+libraries = {
+&"": SubResource("AnimationLibrary_gdohd")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Ruka"]
+deterministic = false
+tree_root = SubResource("AnimationNodeStateMachine_flxu0")
+anim_player = NodePath("../ruka_animation")
+
+[node name="Scale" type="Sprite2D" parent="."]
+position = Vector2(2, 721)
+texture = ExtResource("3_mni3o")
+offset = Vector2(88, -169)
+
+[node name="pin_animation" type="AnimationPlayer" parent="Scale"]
+root_node = NodePath("../Pin")
+libraries = {
+&"": SubResource("AnimationLibrary_lu5p1"),
+&"Ruka": SubResource("AnimationLibrary_flxu0"),
+&"Scale": SubResource("AnimationLibrary_gdohd")
+}
+playback_default_blend_time = 0.5
+
+[node name="AnimationTree" type="AnimationTree" parent="Scale"]
+deterministic = false
+root_node = NodePath("../Pin")
+tree_root = SubResource("AnimationNodeStateMachine_lu5p1")
+anim_player = NodePath("../pin_animation")
+
+[node name="Pin" type="Sprite2D" parent="Scale"]
+texture = ExtResource("4_nq7ji")
+centered = false
+offset = Vector2(0, -33)
+
+[node name="hranice" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hranice"]
+position = Vector2(1282, 229)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_0pdie")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="hranice"]
+position = Vector2(727, 551)
+shape = SubResource("WorldBoundaryShape2D_0pdie")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="hranice"]
+position = Vector2(-2, 251)
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_0pdie")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="hranice"]
+position = Vector2(689, -3)
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_0pdie")
+
+[connection signal="timeout" from="Ptak/Timer" to="Ptak" method="_on_timer_timeout"]
